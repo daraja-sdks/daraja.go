@@ -59,5 +59,25 @@ func (m *mpesa) GetAuthToken() string {
 }
 
 func (m *mpesa) STKPush() *stkPush {
-	return &stkPush{}
+	return stkPushBuilder(m)
+}
+
+func (m *mpesa) C2B() *customerToBusiness {
+	return &customerToBusiness{}
+}
+
+func (m *mpesa) B2C() *businessToCustomer {
+	return &businessToCustomer{}
+}
+
+func (m *mpesa) AccountBalance() *accountBalance {
+	return &accountBalance{}
+}
+
+func (m *mpesa) Reversal() *reversal {
+	return &reversal{}
+}
+
+func (m *mpesa) TransactionStatus() *transactionStatus {
+	return &transactionStatus{}
 }
