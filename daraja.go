@@ -62,7 +62,7 @@ func (m *mpesa) STKPush() *stkPush {
 }
 
 func (m *mpesa) C2B() *customerToBusiness {
-	return &customerToBusiness{}
+	return c2bBuilder(m)
 }
 
 func (m *mpesa) B2C() *businessToCustomer {
