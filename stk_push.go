@@ -75,7 +75,7 @@ func (s *stkPush) Send() (*stkPushResponse, error) {
 		"Authorization": "Bearer " + token,
 	}
 
-	data, err := postRequest[stkPushResponse](s._appRef, routes["stkPush"], body, headers)
+	data, err := postRequest[stkPushResponse](s._appRef._getRoute("stkpush"), body, headers)
 	if err != nil {
 		return nil, err
 	}
