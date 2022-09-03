@@ -70,7 +70,7 @@ func (m *mpesa) B2C() *businessToCustomer {
 }
 
 func (m *mpesa) AccountBalance() *accountBalance {
-	return &accountBalance{}
+	return accountBalanceBuilder(m)
 }
 
 func (m *mpesa) Reversal() *reversal {
