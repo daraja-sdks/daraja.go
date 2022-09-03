@@ -44,7 +44,7 @@ func (m *mpesa) GetAuthToken() string {
 	headers := map[string]string{
 		"Authorization": "Basic " + encoded,
 	}
-	data, err := getRequest[authResponse](m, routes["oauth"], headers)
+	data, err := getRequest[authResponse](m._getRoute("oauth"), headers)
 	if err != nil {
 		panic(fmt.Sprintf("an error occurred while trying to get an auth token: %v", err))
 	}
@@ -53,7 +53,6 @@ func (m *mpesa) GetAuthToken() string {
 	m._latestToken = data.AccessToken
 	m._lastTokenTime = time.Now().Unix()
 
-	println("reached")
 	fmt.Printf("data: %v\n", data)
 	return data.AccessToken
 }
@@ -80,4 +79,12 @@ func (m *mpesa) Reversal() *reversal {
 
 func (m *mpesa) TransactionStatus() *transactionStatus {
 	return &transactionStatus{}
+}
+
+func (m *mpesa) _getRoute(suffix string) string {
+	prefix := "sandbox"
+	if m.Environment == PRODUCTION {
+		prefix = "production"
+	}
+	return routes[prefix] + routes[suffix]
 }
