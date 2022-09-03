@@ -66,7 +66,7 @@ func (m *mpesa) C2B() *customerToBusiness {
 }
 
 func (m *mpesa) B2C() *businessToCustomer {
-	return &businessToCustomer{}
+	return b2cBuilder(m)
 }
 
 func (m *mpesa) AccountBalance() *accountBalance {
